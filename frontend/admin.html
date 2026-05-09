@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Picolas Music Admin</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="bg-blur one"></div>
+  <div class="bg-blur two"></div>
+
+  <main class="admin-shell">
+    <header class="admin-top">
+      <div>
+        <h1>🛡️ Admin Panel</h1>
+        <p>Usuarios, registros, baneos y estadísticas de Picolas Music.</p>
+      </div>
+      <div class="admin-actions">
+        <a href="/" class="nav-link">← Volver a la app</a>
+        <button class="primary" id="refreshBtn">Actualizar</button>
+      </div>
+    </header>
+
+    <section id="adminStatus" class="status">Cargando panel...</section>
+
+    <section class="admin-grid hidden" id="statsGrid">
+      <article class="admin-card"><strong id="statUsers">0</strong><span>Usuarios registrados</span></article>
+      <article class="admin-card"><strong id="statPlaylists">0</strong><span>Playlists creadas</span></article>
+      <article class="admin-card"><strong id="statFavorites">0</strong><span>Favoritos guardados</span></article>
+      <article class="admin-card"><strong id="statBannedUsers">0</strong><span>Usuarios baneados</span></article>
+      <article class="admin-card"><strong id="statBannedIps">0</strong><span>IPs baneadas</span></article>
+    </section>
+
+    <section class="admin-panel hidden" id="usersPanel">
+      <div class="section-head">
+        <div>
+          <h2>👥 Usuarios</h2>
+          <p>Contraseñas: por seguridad solo se muestra el hash cifrado, no la contraseña real.</p>
+        </div>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Usuario</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Password Hash</th>
+              <th>IP creación</th>
+              <th>Última IP</th>
+              <th>Fav/Playlists</th>
+              <th>Creado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="usersBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="admin-panel hidden" id="ipsPanel">
+      <div class="section-head">
+        <div>
+          <h2>🚫 IPs baneadas</h2>
+          <p>Podés banear una IP manualmente o desde la tabla de usuarios.</p>
+        </div>
+      </div>
+      <form class="admin-actions" id="banIpForm">
+        <input class="admin-input" id="ipInput" placeholder="IP a banear" />
+        <input class="admin-input" id="ipReason" placeholder="Razón opcional" />
+        <button class="primary" type="submit">Banear IP</button>
+      </form>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>IP</th><th>Razón</th><th>Fecha</th><th>Acciones</th></tr>
+          </thead>
+          <tbody id="ipsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="admin-panel hidden" id="logsPanel">
+      <div class="section-head">
+        <div>
+          <h2>🕒 Últimos registros / logins</h2>
+          <p>Últimos eventos de registro e inicio de sesión.</p>
+        </div>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>ID</th><th>Usuario</th><th>IP</th><th>Acción</th><th>Fecha</th></tr>
+          </thead>
+          <tbody id="logsBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
